@@ -11,11 +11,6 @@ namespace Domain
 
 		public bool IsCheaperThan(Hotel anotherHotel, IHotelSearchCriteria hotelSearchCriteria)
 		{
-			if (anotherHotel == null)
-			{
-				return true;
-			}
-
 			decimal totalRateOfThisHotel = CalculateTotalRate(hotelSearchCriteria);
 			decimal totalRateOfAnotherHotel = anotherHotel.CalculateTotalRate(hotelSearchCriteria);
 
