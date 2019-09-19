@@ -2,9 +2,9 @@
 
 namespace Domain
 {
-	public class Rate
+	public class Price
 	{
-		public Rate(decimal forWeekDay, decimal forWeekendDay)
+		public Price(decimal forWeekDay, decimal forWeekendDay)
 		{
 			ForWeekDay = forWeekDay;
 			ForWeekendDay = forWeekendDay;

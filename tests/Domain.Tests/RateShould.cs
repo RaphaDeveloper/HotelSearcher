@@ -5,12 +5,12 @@ namespace Domain.Tests
 {
 	public class RateShould
 	{
-		private Rate rate;
+		private Price rate;
 
 		[SetUp]
 		public void Setup()
 		{
-			rate = new Rate(110, 90);
+			rate = new Price(110, 90);
 		}
 
 		[Test]

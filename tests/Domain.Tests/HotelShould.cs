@@ -20,10 +20,10 @@ namespace Domain.Tests
 			{
 				Name = "Lakewood",
 				Rating = 3,
-				RateByCostumerType = new Dictionary<CostumerType, Rate>
+				PriceByCostumerType = new Dictionary<CostumerType, Price>
 				{
-					{ CostumerType.Regular, new Rate(110, 90) },
-					{ CostumerType.Reward, new Rate(80, 80) }
+					{ CostumerType.Regular, new Price(110, 90) },
+					{ CostumerType.Reward, new Price(80, 80) }
 				}
 			};
 
@@ -31,10 +31,10 @@ namespace Domain.Tests
 			{
 				Name = "Bridgewood",
 				Rating = 4,
-				RateByCostumerType = new Dictionary<CostumerType, Rate>
+				PriceByCostumerType = new Dictionary<CostumerType, Price>
 				{
-					{ CostumerType.Regular, new Rate(160, 60) },
-					{ CostumerType.Reward, new Rate(110, 50) }
+					{ CostumerType.Regular, new Price(160, 60) },
+					{ CostumerType.Reward, new Price(110, 50) }
 				}
 			};
 
@@ -42,10 +42,10 @@ namespace Domain.Tests
 			{
 				Name = "Ridgewood",
 				Rating = 5,
-				RateByCostumerType = new Dictionary<CostumerType, Rate>
+				PriceByCostumerType = new Dictionary<CostumerType, Price>
 				{
-					{ CostumerType.Regular, new Rate(220, 150) },
-					{ CostumerType.Reward, new Rate(100, 40) }
+					{ CostumerType.Regular, new Price(220, 150) },
+					{ CostumerType.Reward, new Price(100, 40) }
 				}
 			};
 
@@ -53,10 +53,10 @@ namespace Domain.Tests
 			{
 				Name = "Seawood",
 				Rating = 4,
-				RateByCostumerType = new Dictionary<CostumerType, Rate>
+				PriceByCostumerType = new Dictionary<CostumerType, Price>
 				{
-					{ CostumerType.Regular, new Rate(220, 150) },
-					{ CostumerType.Reward, new Rate(100, 40) }
+					{ CostumerType.Regular, new Price(220, 150) },
+					{ CostumerType.Reward, new Price(100, 40) }
 				}
 			};
 		}

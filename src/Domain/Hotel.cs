@@ -6,39 +6,39 @@ namespace Domain
 	public class Hotel
 	{
 		public string Name { get; set; }
-		public Dictionary<CostumerType, Rate> RateByCostumerType { get; set; }
+		public Dictionary<CostumerType, Price> PriceByCostumerType { get; set; }
 		public int Rating { get; set; }
 
 		public bool IsCheaperThan(Hotel anotherHotel, IHotelSearchCriteria hotelSearchCriteria)
 		{
-			decimal totalRateOfThisHotel = CalculateTotalRate(hotelSearchCriteria);
-			decimal totalRateOfAnotherHotel = anotherHotel.CalculateTotalRate(hotelSearchCriteria);
+			decimal totalPriceOfThisHotel = CalculateTotalPrice(hotelSearchCriteria);
+			decimal totalPriceOfTheAnotherHotel = anotherHotel.CalculateTotalPrice(hotelSearchCriteria);
 
-			if (totalRateOfThisHotel == totalRateOfAnotherHotel)
+			if (totalPriceOfThisHotel == totalPriceOfTheAnotherHotel)
 			{
 				return Rating > anotherHotel.Rating;
 			}
 
-			return totalRateOfThisHotel < totalRateOfAnotherHotel;
+			return totalPriceOfThisHotel < totalPriceOfTheAnotherHotel;
 		}
 
-		private decimal CalculateTotalRate(IHotelSearchCriteria hotelSearchCriteria)
+		private decimal CalculateTotalPrice(IHotelSearchCriteria hotelSearchCriteria)
 		{
-			decimal totalRate = 0;
+			decimal totalPrice = 0;
 
 			foreach (var date in hotelSearchCriteria.Dates)
 			{
-				totalRate += GetRate(hotelSearchCriteria.CostumerType, date);
+				totalPrice += GetPrice(hotelSearchCriteria.CostumerType, date);
 			}
 
-			return totalRate;
+			return totalPrice;
 		}
 
-		private decimal GetRate(CostumerType costumerType, DateTime date)
+		private decimal GetPrice(CostumerType costumerType, DateTime date)
 		{
-			Rate rate = RateByCostumerType[costumerType];
+			Price price = PriceByCostumerType[costumerType];
 
-			return rate.GetByDate(date);
+			return price.GetByDate(date);
 		}
 	}
 }

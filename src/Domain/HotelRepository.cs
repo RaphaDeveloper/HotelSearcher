@@ -9,30 +9,30 @@ namespace Domain
 			Hotel lakewood = new Hotel
 			{
 				Name = "Lakewood",
-				RateByCostumerType = new Dictionary<CostumerType, Rate>
+				PriceByCostumerType = new Dictionary<CostumerType, Price>
 				{
-					{ CostumerType.Regular, new Rate(110, 90) },
-					{ CostumerType.Reward, new Rate(80, 80) }
+					{ CostumerType.Regular, new Price(110, 90) },
+					{ CostumerType.Reward, new Price(80, 80) }
 				}
 			};
 
 			Hotel bridgewood = new Hotel
 			{
 				Name = "Bridgewood",
-				RateByCostumerType = new Dictionary<CostumerType, Rate>
+				PriceByCostumerType = new Dictionary<CostumerType, Price>
 				{
-					{ CostumerType.Regular, new Rate(160, 60) },
-					{ CostumerType.Reward, new Rate(110, 50) }
+					{ CostumerType.Regular, new Price(160, 60) },
+					{ CostumerType.Reward, new Price(110, 50) }
 				}
 			};
 
 			Hotel ridgewood = new Hotel
 			{
 				Name = "Ridgewood",
-				RateByCostumerType = new Dictionary<CostumerType, Rate>
+				PriceByCostumerType = new Dictionary<CostumerType, Price>
 				{
-					{ CostumerType.Regular, new Rate(220, 150) },
-					{ CostumerType.Reward, new Rate(100, 40) }
+					{ CostumerType.Regular, new Price(220, 150) },
+					{ CostumerType.Reward, new Price(100, 40) }
 				}
 			};
 
