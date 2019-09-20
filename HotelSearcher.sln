@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28803.202
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "src\Domain\Domain.csproj", "{D52CD32D-1C26-4081-B260-692981E3A8EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "src\Domain\Domain.csproj", "{D52CD32D-1C26-4081-B260-692981E3A8EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.Tests", "tests\Domain.Tests\Domain.Tests.csproj", "{C3B0F62A-22F0-453C-B721-241CB81A36E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain.Tests", "tests\Domain.Tests\Domain.Tests.csproj", "{C3B0F62A-22F0-453C-B721-241CB81A36E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "src\Application\Application.csproj", "{D3FC422B-ED56-46BA-BEB0-2D51DBC57091}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "src\Application\Application.csproj", "{D3FC422B-ED56-46BA-BEB0-2D51DBC57091}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.Tests", "tests\Application.Tests\Application.Tests.csproj", "{F2460CCB-0FF6-4E68-8216-734A62C66D9E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application.Tests", "tests\Application.Tests\Application.Tests.csproj", "{F2460CCB-0FF6-4E68-8216-734A62C66D9E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infra.NHibernate", "src\Infra.NHibernate\Infra.NHibernate.csproj", "{D0952F71-CF90-43F6-AD6E-D78205D4C432}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{F2460CCB-0FF6-4E68-8216-734A62C66D9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2460CCB-0FF6-4E68-8216-734A62C66D9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2460CCB-0FF6-4E68-8216-734A62C66D9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0952F71-CF90-43F6-AD6E-D78205D4C432}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0952F71-CF90-43F6-AD6E-D78205D4C432}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0952F71-CF90-43F6-AD6E-D78205D4C432}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0952F71-CF90-43F6-AD6E-D78205D4C432}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

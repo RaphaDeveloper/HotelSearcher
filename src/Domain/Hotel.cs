@@ -5,6 +5,7 @@ namespace Domain
 {
 	public class Hotel
 	{
+		public Guid Id { get; set; }
 		public string Name { get; set; }
 		public Dictionary<CostumerType, Price> PriceByCostumerType { get; set; }
 		public int Rating { get; set; }
