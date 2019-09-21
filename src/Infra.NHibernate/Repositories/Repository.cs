@@ -1,4 +1,5 @@
 ﻿using Infra.NHibernate.Context;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Infra.NHibernate.Repositories
@@ -10,6 +11,11 @@ namespace Infra.NHibernate.Repositories
 		public Repository(IContext context)
 		{
 			this.context = context;
+		}
+
+		public IQueryable<TEntity> GetAll()
+		{
+			return context.Session.Query<TEntity>();
 		}
 
 		public async Task Delete(TEntity entity)

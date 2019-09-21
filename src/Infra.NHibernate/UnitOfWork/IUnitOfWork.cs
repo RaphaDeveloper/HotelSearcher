@@ -7,6 +7,5 @@ namespace Infra.NHibernate.UnitOfWork
 		void BeginTransaction();
 		Task Commit();
 		Task Rollback();
-		void CloseTransaction();
 	}
 }

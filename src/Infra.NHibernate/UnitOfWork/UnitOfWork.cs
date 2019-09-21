@@ -1,40 +1,38 @@
 ﻿using NHibernate;
+using System;
 using System.Threading.Tasks;
 
 namespace Infra.NHibernate.UnitOfWork
 {
-	public class UnitOfWork : IUnitOfWork
+	public class UnitOfWork : IUnitOfWork, IDisposable
 	{
-		private readonly ISession _session;
-		private ITransaction _transaction;
+		private readonly ISession session;
+		private ITransaction transaction;
 
 		public UnitOfWork(ISession session)
 		{
-			_session = session;
+			this.session = session;
 		}
 
 		public void BeginTransaction()
 		{
-			_transaction = _session.BeginTransaction();
+			transaction = session.BeginTransaction();
 		}
 
 		public async Task Commit()
 		{
-			await _transaction.CommitAsync();
+			await transaction.CommitAsync();
 		}
 
 		public async Task Rollback()
 		{
-			await _transaction.RollbackAsync();
+			await transaction.RollbackAsync();
 		}
 
-		public void CloseTransaction()
+		public void Dispose()
 		{
-			if (_transaction != null)
-			{
-				_transaction.Dispose();
-				_transaction = null;
-			}
+			transaction.Dispose();
+			transaction = null;
 		}
 	}
 }
