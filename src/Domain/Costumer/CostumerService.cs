@@ -1,17 +1,19 @@
-﻿namespace Domain
+﻿using System;
+
+namespace Domain
 {
 	public class CostumerService
 	{
-		public ICostumerRepository CostumerRepository { get; }
-
 		public CostumerService(ICostumerRepository costumerRepository)
 		{
 			CostumerRepository = costumerRepository;
 		}
 
-		public void Save(Costumer costumer)
-		{
+		public ICostumerRepository CostumerRepository { get; }
 
+		public void RegisterCostumer(Costumer costumer)
+		{
+			CostumerRepository.Save(costumer);
 		}
 	}
 }

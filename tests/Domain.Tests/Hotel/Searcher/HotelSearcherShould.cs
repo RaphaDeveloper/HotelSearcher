@@ -1,10 +1,9 @@
-using Domain;
 using Domain.Tests.Stubs;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 
-namespace Tests
+namespace Domain.Tests
 {
 	public class HotelSearcherShould
 	{

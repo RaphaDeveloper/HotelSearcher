@@ -1,7 +1,7 @@
 ﻿using Moq;
 using NUnit.Framework;
 
-namespace Domain.Tests.Costumer
+namespace Domain.Tests
 {
 	public class CostumerServiceShould
 	{
@@ -17,8 +17,12 @@ namespace Domain.Tests.Costumer
 		}
 
 		[Test]
-		public void Save_Costumer()
+		public void Save_Costumer_When_He_Is_Register()
 		{
+			Costumer costumer = new Costumer();
+
+			costumerService.RegisterCostumer(costumer);
+
 			costumerRepository.Verify(c => c.Save(costumer), Times.Once);
 		}
 	}

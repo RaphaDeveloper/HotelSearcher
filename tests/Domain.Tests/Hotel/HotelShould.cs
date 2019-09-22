@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace Domain.Tests
 {
@@ -101,7 +102,7 @@ namespace Domain.Tests
 		}
 
 		[Test]
-		public void Compare_If_Is_Cheaper_Than_Another_Hotel_Considering_The_Hotel_Rating_When_There_Is_A_Tie_On_Price()
+		public void Compare_If_Is_Cheaper_Than_Another_Hotel_Considering_The_Hotel_Rating_When_There_Is_A_Tie_On_Rate()
 		{
 			HotelSearchCriteria hotelSearchCriteria = CreateHotelSearchCriteria(CostumerType.Reward, new DateTime(2019, 09, 14), new DateTime(2019, 09, 15));
 

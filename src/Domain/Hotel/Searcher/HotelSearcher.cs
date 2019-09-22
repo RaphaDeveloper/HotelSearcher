@@ -1,17 +1,19 @@
-﻿using System.Collections.Generic;
-
-namespace Domain
+﻿namespace Domain
 {
-	public class HotelChain
+	public class HotelSearcher : IHotelSearcher
 	{
-		public List<Hotel> Hotels { get; set; }
-		public List<Costumer> Costumers { get; set; }
+		private IHotelRepository HotelRepository { get; }
+
+		public HotelSearcher(IHotelRepository hotelRepository)
+		{
+			HotelRepository = hotelRepository;
+		}
 
 		public string FindTheCheaperHotel(IHotelSearchCriteria hotelSearchCriteria)
 		{
 			Hotel cheaperHotel = null;
 
-			foreach (var hotel in Hotels)
+			foreach (var hotel in HotelRepository.GetAll())
 			{
 				if (cheaperHotel == null || hotel.IsCheaperThan(cheaperHotel, hotelSearchCriteria))
 				{

@@ -2,18 +2,16 @@
 {
 	public class FindTheCheaperHotel
 	{
-		public IHotelChainRepository HotelChainRepository { get; }
+		public IHotelSearcher HotelSearcher { get; }
 
-		public FindTheCheaperHotel(IHotelChainRepository hotelChainRepository)
+		public FindTheCheaperHotel(IHotelSearcher hotelSearcher)
 		{
-			HotelChainRepository = hotelChainRepository;
+			HotelSearcher = hotelSearcher;
 		}
 
 		public string Do(IHotelSearchCriteria hotelSearchCriteria)
 		{
-			HotelChain hotelChain = HotelChainRepository.GetFirst();
-
-			return hotelChain.FindTheCheaperHotel(hotelSearchCriteria);
+			return HotelSearcher.FindTheCheaperHotel(hotelSearchCriteria);
 		}
 	}
 }
