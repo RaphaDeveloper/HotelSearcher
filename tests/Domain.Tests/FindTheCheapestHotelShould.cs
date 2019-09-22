@@ -5,14 +5,14 @@ using System.Collections.Generic;
 
 namespace Domain.Tests
 {
-	public class HotelSearcherShould
+	public class FindTheCheapestHotelShould
 	{
-		private HotelSearcher hotelSearcher;
+		private FindTheCheapestHotel findTheCheaperHotel;
 
 		[SetUp]
 		public void Setup()
 		{
-			hotelSearcher = new HotelSearcher(new HotelRepository());
+			findTheCheaperHotel = new FindTheCheapestHotel(new HotelRepository());
 		}
 
 		[Test]
@@ -20,7 +20,7 @@ namespace Domain.Tests
 		{
 			HotelSearchCriteria hotelSearchCriteria = CreateHotelSearchCriteria(CostumerType.Regular, new DateTime(2019, 09, 09), new DateTime(2019, 09, 13));
 
-			string hotel = hotelSearcher.FindTheCheaperHotel(hotelSearchCriteria);
+			string hotel = findTheCheaperHotel.Do(hotelSearchCriteria);
 
 			Assert.AreEqual("Lakewood", hotel);
 		}
@@ -30,7 +30,7 @@ namespace Domain.Tests
 		{
 			HotelSearchCriteria hotelSearchCriteria = CreateHotelSearchCriteria(CostumerType.Regular, new DateTime(2019, 09, 14), new DateTime(2019, 09, 15));
 
-			string hotel = hotelSearcher.FindTheCheaperHotel(hotelSearchCriteria);
+			string hotel = findTheCheaperHotel.Do(hotelSearchCriteria);
 
 			Assert.AreEqual("Bridgewood", hotel);
 		}
@@ -40,7 +40,7 @@ namespace Domain.Tests
 		{
 			HotelSearchCriteria hotelSearchCriteria = CreateHotelSearchCriteria(CostumerType.Regular, new DateTime(2019, 09, 13), new DateTime(2019, 09, 14));
 
-			string hotel = hotelSearcher.FindTheCheaperHotel(hotelSearchCriteria);
+			string hotel = findTheCheaperHotel.Do(hotelSearchCriteria);
 
 			Assert.AreEqual("Lakewood", hotel);
 		}
@@ -50,7 +50,7 @@ namespace Domain.Tests
 		{
 			HotelSearchCriteria hotelSearchCriteria = CreateHotelSearchCriteria(CostumerType.Reward, new DateTime(2019, 09, 09), new DateTime(2019, 09, 13));
 
-			string hotel = hotelSearcher.FindTheCheaperHotel(hotelSearchCriteria);
+			string hotel = findTheCheaperHotel.Do(hotelSearchCriteria);
 
 			Assert.AreEqual("Lakewood", hotel);
 		}
@@ -60,7 +60,7 @@ namespace Domain.Tests
 		{
 			HotelSearchCriteria hotelSearchCriteria = CreateHotelSearchCriteria(CostumerType.Reward, new DateTime(2019, 09, 14), new DateTime(2019, 09, 15));
 
-			string hotel = hotelSearcher.FindTheCheaperHotel(hotelSearchCriteria);
+			string hotel = findTheCheaperHotel.Do(hotelSearchCriteria);
 
 			Assert.AreEqual("Ridgewood", hotel);
 		}

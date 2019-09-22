@@ -3,17 +3,17 @@ using NUnit.Framework;
 
 namespace Domain.Tests
 {
-	public class CostumerServiceShould
+	public class CreateOrUpdateCostumerShould
 	{
 		private Mock<ICostumerRepository> costumerRepository;
-		private CostumerService costumerService;
+		private CreateOrUpdateCostumer createOrUpdateCostumer;
 
 		[SetUp]
 		public void Setup()
 		{
 			costumerRepository = new Mock<ICostumerRepository>();
 
-			costumerService = new CostumerService(costumerRepository.Object);
+			createOrUpdateCostumer = new CreateOrUpdateCostumer(costumerRepository.Object);
 		}
 
 		[Test]
@@ -21,7 +21,7 @@ namespace Domain.Tests
 		{
 			Costumer costumer = CreateCostumer();
 
-			costumerService.Save(costumer);
+			createOrUpdateCostumer.Do(costumer);
 
 			costumerRepository.Verify(c => c.Save(costumer), Times.Once);
 		}
@@ -32,7 +32,7 @@ namespace Domain.Tests
 			Costumer costumer = CreateCostumer();
 			costumer.Name = null;
 
-			costumerService.Save(costumer);
+			createOrUpdateCostumer.Do(costumer);
 
 			costumerRepository.Verify(c => c.Save(costumer), Times.Never);
 		}
@@ -43,7 +43,7 @@ namespace Domain.Tests
 			Costumer costumer = CreateCostumer();
 			costumer.Name = string.Empty;
 
-			costumerService.Save(costumer);
+			createOrUpdateCostumer.Do(costumer);
 
 			costumerRepository.Verify(c => c.Save(costumer), Times.Never);
 		}
@@ -54,7 +54,7 @@ namespace Domain.Tests
 			Costumer costumer = CreateCostumer();
 			costumer.Name = " ";
 
-			costumerService.Save(costumer);
+			createOrUpdateCostumer.Do(costumer);
 
 			costumerRepository.Verify(c => c.Save(costumer), Times.Never);
 		}
@@ -65,7 +65,7 @@ namespace Domain.Tests
 			Costumer costumer = CreateCostumer();
 			costumer.Email = null;
 
-			costumerService.Save(costumer);
+			createOrUpdateCostumer.Do(costumer);
 
 			costumerRepository.Verify(c => c.Save(costumer), Times.Never);
 		}
@@ -76,7 +76,7 @@ namespace Domain.Tests
 			Costumer costumer = CreateCostumer();
 			costumer.Email = string.Empty;
 
-			costumerService.Save(costumer);
+			createOrUpdateCostumer.Do(costumer);
 
 			costumerRepository.Verify(c => c.Save(costumer), Times.Never);
 		}
@@ -87,7 +87,7 @@ namespace Domain.Tests
 			Costumer costumer = CreateCostumer();
 			costumer.Email = " ";
 
-			costumerService.Save(costumer);
+			createOrUpdateCostumer.Do(costumer);
 
 			costumerRepository.Verify(c => c.Save(costumer), Times.Never);
 		}
@@ -98,7 +98,7 @@ namespace Domain.Tests
 			Costumer costumer = CreateCostumer();
 			costumerRepository.Setup(c => c.GetByEmail(costumer.Email)).Returns(CreateCostumer);
 
-			costumerService.Save(costumer);
+			createOrUpdateCostumer.Do(costumer);
 
 			costumerRepository.Verify(c => c.Save(costumer), Times.Never);
 		}
@@ -109,7 +109,7 @@ namespace Domain.Tests
 			Costumer costumer = CreateCostumer();
 			costumerRepository.Setup(c => c.GetByEmail(costumer.Email)).Returns(() => costumer);
 
-			costumerService.Save(costumer);
+			createOrUpdateCostumer.Do(costumer);
 
 			costumerRepository.Verify(c => c.Save(costumer), Times.Once);
 		}

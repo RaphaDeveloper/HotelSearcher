@@ -1,15 +1,15 @@
 ﻿namespace Domain
 {
-	public class CostumerService
+	public class CreateOrUpdateCostumer
 	{
-		public CostumerService(ICostumerRepository costumerRepository)
+		public CreateOrUpdateCostumer(ICostumerRepository costumerRepository)
 		{
 			CostumerRepository = costumerRepository;
 		}
 
 		public ICostumerRepository CostumerRepository { get; }
 
-		public void Save(Costumer costumer)
+		public void Do(Costumer costumer)
 		{
 			if (costumer.IsValid && !ThereIsAnotherCostumerWithTheEmail(costumer))
 			{
