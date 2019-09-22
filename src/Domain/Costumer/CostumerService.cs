@@ -11,15 +11,17 @@
 
 		public void Save(Costumer costumer)
 		{
-			if (costumer.IsValid && !ThereIsAnotherCostumerWithTheEmail(costumer.Email))
+			if (costumer.IsValid && !ThereIsAnotherCostumerWithTheEmail(costumer))
 			{
 				CostumerRepository.Save(costumer);
 			}
 		}
 
-		private bool ThereIsAnotherCostumerWithTheEmail(string email)
+		private bool ThereIsAnotherCostumerWithTheEmail(Costumer costumer)
 		{
-			return CostumerRepository.GetByEmail(email) != null;
+			Costumer anotherCostumer = CostumerRepository.GetByEmail(costumer.Email);
+
+			return anotherCostumer != null && anotherCostumer.Id != costumer.Id;
 		}
 	}
 }

@@ -103,6 +103,17 @@ namespace Domain.Tests
 			costumerRepository.Verify(c => c.Save(costumer), Times.Never);
 		}
 
+		[Test]
+		public void Save_Costumer_If_She_Already_Exists()
+		{
+			Costumer costumer = CreateCostumer();
+			costumerRepository.Setup(c => c.GetByEmail(costumer.Email)).Returns(() => costumer);
+
+			costumerService.Save(costumer);
+
+			costumerRepository.Verify(c => c.Save(costumer), Times.Once);
+		}
+
 		private Costumer CreateCostumer()
 		{
 			Costumer costumer = new Costumer();
