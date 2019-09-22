@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Domain
+﻿namespace Domain
 {
 	public class CostumerService
 	{
@@ -11,9 +9,17 @@ namespace Domain
 
 		public ICostumerRepository CostumerRepository { get; }
 
-		public void RegisterCostumer(Costumer costumer)
+		public void Save(Costumer costumer)
 		{
-			CostumerRepository.Save(costumer);
+			if (costumer.IsValid && !ThereIsAnotherCostumerWithTheEmail(costumer.Email))
+			{
+				CostumerRepository.Save(costumer);
+			}
+		}
+
+		private bool ThereIsAnotherCostumerWithTheEmail(string email)
+		{
+			return CostumerRepository.GetByEmail(email) != null;
 		}
 	}
 }
