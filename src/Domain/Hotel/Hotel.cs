@@ -48,19 +48,13 @@ namespace Domain
 
 		internal void Book(Costumer costumer, IEnumerable<DateTime> dates)
 		{
-			Booking booking = new Booking(costumer, dates);
-
-			IEnumerable<Booking> costumerBookings = Bookings.Where(b => b.Costumer.Id == costumer.Id);
-
-			foreach (var date in dates)
+			if (!costumer.IsThereAnyBookingForTheDates(dates))
 			{
-				if (costumerBookings.Any(b => b.Dates.Any(d => d == date)))
-				{
-					return;
-				}
-			}
+				Booking booking = new Booking(this, costumer, dates);
 
-			Bookings.Add(booking);
+				Bookings.Add(booking);
+				costumer.AddBooking(booking);
+			}
 		}
 	}
 }

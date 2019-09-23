@@ -23,7 +23,7 @@ namespace Domain.Tests
 		}
 
 		[Test]
-		public void Book_Hotel()
+		public void Add_Booking_On_Hotel()
 		{
 			BookingSpecification bookingSpecification = new BookingSpecification(Guid.NewGuid(), Guid.NewGuid(), new DateTime[] { new DateTime(2019, 09, 22) });
 
@@ -39,7 +39,29 @@ namespace Domain.Tests
 
 			Assert.AreEqual(1, hotel.Bookings.Count);
 			Assert.AreEqual(costumer, hotel.Bookings.Single().Costumer);
+			Assert.AreEqual(hotel, hotel.Bookings.Single().Hotel);
 			Assert.AreEqual(bookingSpecification.Dates, hotel.Bookings.Single().Dates);
+		}
+
+		[Test]
+		public void Add_Booking_On_Costumer()
+		{
+			BookingSpecification bookingSpecification = new BookingSpecification(Guid.NewGuid(), Guid.NewGuid(), new DateTime[] { new DateTime(2019, 09, 22) });
+
+			Hotel hotel = new Hotel { Id = bookingSpecification.HotelId };
+			Costumer costumer = new Costumer { Id = bookingSpecification.CostumerId };
+
+			hotelRepository.Setup(h => h.GetById(bookingSpecification.HotelId)).Returns(hotel);
+			costumerRepository.Setup(h => h.GetById(bookingSpecification.CostumerId)).Returns(costumer);
+
+
+			bookHotel.Do(bookingSpecification);
+
+
+			Assert.AreEqual(1, costumer.Bookings.Count);
+			Assert.AreEqual(hotel, costumer.Bookings.Single().Hotel);
+			Assert.AreEqual(costumer, costumer.Bookings.Single().Costumer);
+			Assert.AreEqual(bookingSpecification.Dates, costumer.Bookings.Single().Dates);
 		}
 
 		[Test]
@@ -49,7 +71,10 @@ namespace Domain.Tests
 			BookingSpecification bookingSpecification = new BookingSpecification(Guid.NewGuid(), Guid.NewGuid(), dates);
 
 			Costumer costumer = new Costumer { Id = bookingSpecification.CostumerId };
-			Hotel hotel = new Hotel { Id = bookingSpecification.HotelId, Bookings = new List<Booking> { new Booking(costumer, dates) } };
+			Hotel hotel = new Hotel { Id = bookingSpecification.HotelId };
+			Booking booking = new Booking(hotel, costumer, dates);
+			hotel.Bookings = new List<Booking> { booking };
+			costumer.Bookings = new List<Booking> { booking };
 
 			hotelRepository.Setup(h => h.GetById(bookingSpecification.HotelId)).Returns(hotel);
 			costumerRepository.Setup(h => h.GetById(bookingSpecification.CostumerId)).Returns(costumer);
