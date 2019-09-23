@@ -9,6 +9,7 @@ namespace Domain
 		public Guid Id { get; set; } = Guid.NewGuid();
 		public string Name { get; set; }
 		public string Email { get; set; }
+		public CostumerType CostumerType { get; set; }
 		public List<Booking> Bookings { get; set; } = new List<Booking>();
 
 		internal bool IsValid => !string.IsNullOrWhiteSpace(Name) && !string.IsNullOrWhiteSpace(Email);

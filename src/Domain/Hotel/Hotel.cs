@@ -13,10 +13,21 @@ namespace Domain
 		public List<Booking> Bookings { get; set; } = new List<Booking>();
 
 
+		internal void Book(Costumer costumer, IEnumerable<DateTime> dates)
+		{
+			if (!costumer.IsThereAnyBookingForTheDates(dates))
+			{
+				Booking booking = new Booking(this, costumer, dates, CalculateTotalPrice(costumer.CostumerType, dates));
+
+				Bookings.Add(booking);
+				costumer.AddBooking(booking);
+			}
+		}
+
 		public bool IsCheaperThan(Hotel anotherHotel, IHotelSearchCriteria hotelSearchCriteria)
 		{
-			decimal totalPriceOfThisHotel = CalculateTotalPrice(hotelSearchCriteria);
-			decimal totalPriceOfTheAnotherHotel = anotherHotel.CalculateTotalPrice(hotelSearchCriteria);
+			decimal totalPriceOfThisHotel = CalculateTotalPrice(hotelSearchCriteria.CostumerType, hotelSearchCriteria.Dates);
+			decimal totalPriceOfTheAnotherHotel = anotherHotel.CalculateTotalPrice(hotelSearchCriteria.CostumerType, hotelSearchCriteria.Dates);
 
 			if (totalPriceOfThisHotel == totalPriceOfTheAnotherHotel)
 			{
@@ -26,13 +37,13 @@ namespace Domain
 			return totalPriceOfThisHotel < totalPriceOfTheAnotherHotel;
 		}
 
-		private decimal CalculateTotalPrice(IHotelSearchCriteria hotelSearchCriteria)
+		private decimal CalculateTotalPrice(CostumerType costumerType, IEnumerable<DateTime> dates)
 		{
 			decimal totalPrice = 0;
 
-			foreach (var date in hotelSearchCriteria.Dates)
+			foreach (var date in dates)
 			{
-				totalPrice += GetPrice(hotelSearchCriteria.CostumerType, date);
+				totalPrice += GetPrice(costumerType, date);
 			}
 
 			return totalPrice;
@@ -43,18 +54,6 @@ namespace Domain
 			Price price = PriceByCostumerType[costumerType];
 
 			return price.GetByDate(date);
-		}
-
-
-		internal void Book(Costumer costumer, IEnumerable<DateTime> dates)
-		{
-			if (!costumer.IsThereAnyBookingForTheDates(dates))
-			{
-				Booking booking = new Booking(this, costumer, dates);
-
-				Bookings.Add(booking);
-				costumer.AddBooking(booking);
-			}
 		}
 	}
 }
