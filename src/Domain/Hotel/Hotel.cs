@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Domain
 {
 	public class Hotel
 	{
-		public Guid Id { get; set; }
+		public Guid Id { get; set; } = Guid.NewGuid();
 		public string Name { get; set; }
 		public Dictionary<CostumerType, Price> PriceByCostumerType { get; set; }
 		public int Rating { get; set; }
+		public List<Booking> Bookings { get; set; } = new List<Booking>();
+
 
 		public bool IsCheaperThan(Hotel anotherHotel, IHotelSearchCriteria hotelSearchCriteria)
 		{
@@ -40,6 +43,24 @@ namespace Domain
 			Price price = PriceByCostumerType[costumerType];
 
 			return price.GetByDate(date);
+		}
+
+
+		internal void Book(Costumer costumer, IEnumerable<DateTime> dates)
+		{
+			Booking booking = new Booking(costumer, dates);
+
+			IEnumerable<Booking> costumerBookings = Bookings.Where(b => b.Costumer.Id == costumer.Id);
+
+			foreach (var date in dates)
+			{
+				if (costumerBookings.Any(b => b.Dates.Any(d => d == date)))
+				{
+					return;
+				}
+			}
+
+			Bookings.Add(booking);
 		}
 	}
 }

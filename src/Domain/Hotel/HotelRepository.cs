@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Domain
 {
@@ -39,6 +41,11 @@ namespace Domain
 			yield return lakewood;
 			yield return bridgewood;
 			yield return ridgewood;
+		}
+
+		public Hotel GetById(Guid id)
+		{
+			return GetAll().SingleOrDefault(h => h.Id == id);
 		}
 	}
 }

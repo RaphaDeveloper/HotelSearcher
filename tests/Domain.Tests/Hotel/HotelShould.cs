@@ -62,6 +62,14 @@ namespace Domain.Tests
 		}
 
 		[Test]
+		public void Create_Id_On_Instantiation()
+		{
+			Hotel hotel = new Hotel();
+
+			Assert.AreNotEqual(Guid.Empty, hotel.Id);
+		}
+
+		[Test]
 		public void Compare_If_Is_Cheaper_Than_Another_Hotel_In_Week_Day_For_Regular_Costumer()
 		{
 			HotelSearchCriteria hotelSearchCriteria = CreateHotelSearchCriteria(CostumerType.Regular, new DateTime(2019, 09, 09), new DateTime(2019, 09, 13));
