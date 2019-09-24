@@ -1,8 +1,8 @@
 ﻿namespace Domain
 {
-	public class FindTheCheapestHotel
+	public class FindTheCheapestHotel : IFindTheCheapestHotel
 	{
-		public IHotelRepository HotelRepository { get; }
+		private IHotelRepository HotelRepository { get; }
 
 		public FindTheCheapestHotel(IHotelRepository hotelRepository)
 		{

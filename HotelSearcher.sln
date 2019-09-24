@@ -13,6 +13,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application.Tests", "tests\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infra.NHibernate", "src\Infra.NHibernate\Infra.NHibernate.csproj", "{D0952F71-CF90-43F6-AD6E-D78205D4C432}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "src\API\API.csproj", "{649E0BEE-31FD-4810-B13E-581F8F92CD3B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API.Tests", "src\API.Tests\API.Tests.csproj", "{57FB995D-E9FD-426E-99B7-7CC9D9112BA2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{D0952F71-CF90-43F6-AD6E-D78205D4C432}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D0952F71-CF90-43F6-AD6E-D78205D4C432}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D0952F71-CF90-43F6-AD6E-D78205D4C432}.Release|Any CPU.Build.0 = Release|Any CPU
+		{649E0BEE-31FD-4810-B13E-581F8F92CD3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{649E0BEE-31FD-4810-B13E-581F8F92CD3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{649E0BEE-31FD-4810-B13E-581F8F92CD3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{649E0BEE-31FD-4810-B13E-581F8F92CD3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57FB995D-E9FD-426E-99B7-7CC9D9112BA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57FB995D-E9FD-426E-99B7-7CC9D9112BA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57FB995D-E9FD-426E-99B7-7CC9D9112BA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57FB995D-E9FD-426E-99B7-7CC9D9112BA2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
