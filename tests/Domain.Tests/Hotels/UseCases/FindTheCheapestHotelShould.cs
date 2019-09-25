@@ -1,6 +1,5 @@
 using Domain.Customers.ValueObjects;
 using Domain.Hotels.Repositories;
-using Domain.Hotels.Services;
 using Domain.Tests.Stubs;
 using NUnit.Framework;
 using System;
@@ -10,12 +9,12 @@ namespace Domain.Tests.Hotels.UseCases
 {
 	public class FindTheCheapestHotelShould
 	{
-		private HotelService hotelService;
+		private FindTheCheapestHotel findTheCheapestHotel;
 
 		[SetUp]
 		public void Setup()
 		{
-			hotelService = new HotelService(new HotelRepository(), null);
+			findTheCheapestHotel = new FindTheCheapestHotel(new HotelRepository());
 		}
 
 		[Test]
@@ -23,7 +22,7 @@ namespace Domain.Tests.Hotels.UseCases
 		{
 			HotelSearchCriteria hotelSearchCriteria = CreateHotelSearchCriteria(CostumerType.Regular, new DateTime(2019, 09, 09), new DateTime(2019, 09, 13));
 
-			string hotel = hotelService.FindTheCheapestHotel(hotelSearchCriteria);
+			string hotel = findTheCheapestHotel.Do(hotelSearchCriteria);
 
 			Assert.AreEqual("Lakewood", hotel);
 		}
@@ -33,7 +32,7 @@ namespace Domain.Tests.Hotels.UseCases
 		{
 			HotelSearchCriteria hotelSearchCriteria = CreateHotelSearchCriteria(CostumerType.Regular, new DateTime(2019, 09, 14), new DateTime(2019, 09, 15));
 
-			string hotel = hotelService.FindTheCheapestHotel(hotelSearchCriteria);
+			string hotel = findTheCheapestHotel.Do(hotelSearchCriteria);
 
 			Assert.AreEqual("Bridgewood", hotel);
 		}
@@ -43,7 +42,7 @@ namespace Domain.Tests.Hotels.UseCases
 		{
 			HotelSearchCriteria hotelSearchCriteria = CreateHotelSearchCriteria(CostumerType.Regular, new DateTime(2019, 09, 13), new DateTime(2019, 09, 14));
 
-			string hotel = hotelService.FindTheCheapestHotel(hotelSearchCriteria);
+			string hotel = findTheCheapestHotel.Do(hotelSearchCriteria);
 
 			Assert.AreEqual("Lakewood", hotel);
 		}
@@ -53,7 +52,7 @@ namespace Domain.Tests.Hotels.UseCases
 		{
 			HotelSearchCriteria hotelSearchCriteria = CreateHotelSearchCriteria(CostumerType.Reward, new DateTime(2019, 09, 09), new DateTime(2019, 09, 13));
 
-			string hotel = hotelService.FindTheCheapestHotel(hotelSearchCriteria);
+			string hotel = findTheCheapestHotel.Do(hotelSearchCriteria);
 
 			Assert.AreEqual("Lakewood", hotel);
 		}
@@ -63,7 +62,7 @@ namespace Domain.Tests.Hotels.UseCases
 		{
 			HotelSearchCriteria hotelSearchCriteria = CreateHotelSearchCriteria(CostumerType.Reward, new DateTime(2019, 09, 14), new DateTime(2019, 09, 15));
 
-			string hotel = hotelService.FindTheCheapestHotel(hotelSearchCriteria);
+			string hotel = findTheCheapestHotel.Do(hotelSearchCriteria);
 
 			Assert.AreEqual("Ridgewood", hotel);
 		}

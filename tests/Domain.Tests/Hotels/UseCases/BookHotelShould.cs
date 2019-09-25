@@ -3,7 +3,6 @@ using Domain.Customers.Repositories;
 using Domain.Customers.ValueObjects;
 using Domain.Hotels.Entities;
 using Domain.Hotels.Repositories;
-using Domain.Hotels.Services;
 using Domain.Hotels.ValueObjects;
 using Moq;
 using NUnit.Framework;
@@ -18,7 +17,7 @@ namespace Domain.Tests.Hotels.UseCases
 		private Mock<IHotelRepository> hotelRepository;
 		private Mock<ICustomerRepository> costumerRepository;
 
-		private HotelService hotelService;
+		private BookHotel bookHotel;
 
 		[SetUp]
 		public void Setup()
@@ -26,7 +25,7 @@ namespace Domain.Tests.Hotels.UseCases
 			hotelRepository = new Mock<IHotelRepository>();
 			costumerRepository = new Mock<ICustomerRepository>();
 
-			hotelService = new HotelService(hotelRepository.Object, costumerRepository.Object);
+			bookHotel = new BookHotel(hotelRepository.Object, costumerRepository.Object);
 		}
 
 		[Test]
@@ -41,7 +40,7 @@ namespace Domain.Tests.Hotels.UseCases
 			costumerRepository.Setup(h => h.GetById(bookingSpecification.CostumerId)).Returns(costumer);
 
 
-			hotelService.BookHotel(bookingSpecification);
+			bookHotel.Do(bookingSpecification);
 
 
 			Assert.AreEqual(1, hotel.Bookings.Count);
@@ -62,7 +61,7 @@ namespace Domain.Tests.Hotels.UseCases
 			costumerRepository.Setup(h => h.GetById(bookingSpecification.CostumerId)).Returns(costumer);
 
 
-			hotelService.BookHotel(bookingSpecification);
+			bookHotel.Do(bookingSpecification);
 
 
 			Assert.AreEqual(1, costumer.Bookings.Count);
@@ -85,7 +84,7 @@ namespace Domain.Tests.Hotels.UseCases
 			costumerRepository.Setup(h => h.GetById(bookingSpecification.CostumerId)).Returns(costumer);
 
 
-			hotelService.BookHotel(bookingSpecification);
+			bookHotel.Do(bookingSpecification);
 
 
 			Assert.AreEqual(200, hotel.Bookings.Single().TotalPrice);
@@ -107,7 +106,7 @@ namespace Domain.Tests.Hotels.UseCases
 			costumerRepository.Setup(h => h.GetById(bookingSpecification.CostumerId)).Returns(costumer);
 
 
-			hotelService.BookHotel(bookingSpecification);
+			bookHotel.Do(bookingSpecification);
 
 
 			Assert.AreEqual(1, hotel.Bookings.Count);
