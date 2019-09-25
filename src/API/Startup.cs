@@ -1,7 +1,9 @@
-﻿using Application.Services;
+﻿using Application.Hotels.UseCases;
+using Application.Services;
 using Domain;
 using Domain.Hotels.Repositories;
 using Domain.Hotels.Services;
+using Domain.Hotels.UseCases;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -25,6 +27,9 @@ namespace API
 			services.AddScoped<IHotelAppService, HotelAppService>();
 			services.AddScoped<IHotelService, HotelService>();
 			services.AddScoped<IHotelRepository, HotelRepository>();
+
+			services.AddScoped<IFindTheCheapestHotel, FindTheCheapestHotel>();
+			services.AddScoped<IFindTheCheapestHotelApp, FindTheCheapestHotelApp>();
 
 			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 		}

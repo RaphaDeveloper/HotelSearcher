@@ -1,5 +1,6 @@
 using Domain.Customers.ValueObjects;
 using Domain.Hotels.Repositories;
+using Domain.Hotels.UseCases;
 using Domain.Tests.Stubs;
 using NUnit.Framework;
 using System;

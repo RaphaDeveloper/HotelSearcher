@@ -1,6 +1,6 @@
 ﻿using Domain.Hotels.ValueObjects;
 
-namespace Domain
+namespace Domain.Hotels.UseCases
 {
 	public interface IFindTheCheapestHotel
 	{

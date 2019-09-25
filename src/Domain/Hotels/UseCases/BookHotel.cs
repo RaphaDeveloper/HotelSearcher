@@ -4,7 +4,7 @@ using Domain.Hotels.Entities;
 using Domain.Hotels.Repositories;
 using Domain.Hotels.ValueObjects;
 
-namespace Domain
+namespace Domain.Hotels.UseCases
 {
 	public class BookHotel
 	{

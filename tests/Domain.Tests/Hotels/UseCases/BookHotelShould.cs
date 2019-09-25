@@ -3,6 +3,7 @@ using Domain.Customers.Repositories;
 using Domain.Customers.ValueObjects;
 using Domain.Hotels.Entities;
 using Domain.Hotels.Repositories;
+using Domain.Hotels.UseCases;
 using Domain.Hotels.ValueObjects;
 using Moq;
 using NUnit.Framework;
