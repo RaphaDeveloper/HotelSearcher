@@ -1,11 +1,12 @@
-﻿using Domain.Hotels.Entities;
+﻿using Domain.Customers.ValueObjects;
+using Domain.Hotels.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Domain
+namespace Domain.Customers.Entities
 {
-	public class Costumer
+	public class Customer
 	{
 		public Guid Id { get; set; } = Guid.NewGuid();
 		public string Name { get; set; }

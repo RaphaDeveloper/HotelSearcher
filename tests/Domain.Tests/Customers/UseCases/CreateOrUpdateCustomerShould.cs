@@ -1,17 +1,20 @@
-﻿using Moq;
+﻿using Domain.Customers.Entities;
+using Domain.Customers.Repositories;
+using Domain.Customers.UseCases;
+using Moq;
 using NUnit.Framework;
 
-namespace Domain.Tests
+namespace Domain.Tests.Customers.UseCases
 {
-	public class CreateOrUpdateCostumerShould
+	public class CreateOrUpdateCustomerShould
 	{
-		private Mock<ICostumerRepository> costumerRepository;
+		private Mock<ICustomerRepository> costumerRepository;
 		private CreateOrUpdateCostumer createOrUpdateCostumer;
 
 		[SetUp]
 		public void Setup()
 		{
-			costumerRepository = new Mock<ICostumerRepository>();
+			costumerRepository = new Mock<ICustomerRepository>();
 
 			createOrUpdateCostumer = new CreateOrUpdateCostumer(costumerRepository.Object);
 		}
@@ -19,7 +22,7 @@ namespace Domain.Tests
 		[Test]
 		public void Save_Costumer()
 		{
-			Costumer costumer = CreateCostumer();
+			Customer costumer = CreateCostumer();
 
 			createOrUpdateCostumer.Do(costumer);
 
@@ -29,7 +32,7 @@ namespace Domain.Tests
 		[Test]
 		public void Not_Save_Costumer_When_Her_Name_Is_Null()
 		{
-			Costumer costumer = CreateCostumer();
+			Customer costumer = CreateCostumer();
 			costumer.Name = null;
 
 			createOrUpdateCostumer.Do(costumer);
@@ -40,7 +43,7 @@ namespace Domain.Tests
 		[Test]
 		public void Not_Save_Costumer_When_Her_Name_Is_Empty()
 		{
-			Costumer costumer = CreateCostumer();
+			Customer costumer = CreateCostumer();
 			costumer.Name = string.Empty;
 
 			createOrUpdateCostumer.Do(costumer);
@@ -51,7 +54,7 @@ namespace Domain.Tests
 		[Test]
 		public void Not_Save_Costumer_When_Her_Name_Is_White_Space()
 		{
-			Costumer costumer = CreateCostumer();
+			Customer costumer = CreateCostumer();
 			costumer.Name = " ";
 
 			createOrUpdateCostumer.Do(costumer);
@@ -62,7 +65,7 @@ namespace Domain.Tests
 		[Test]
 		public void Not_Save_Costumer_When_Her_Email_Is_Null()
 		{
-			Costumer costumer = CreateCostumer();
+			Customer costumer = CreateCostumer();
 			costumer.Email = null;
 
 			createOrUpdateCostumer.Do(costumer);
@@ -73,7 +76,7 @@ namespace Domain.Tests
 		[Test]
 		public void Not_Save_Costumer_When_Her_Email_Is_Empty()
 		{
-			Costumer costumer = CreateCostumer();
+			Customer costumer = CreateCostumer();
 			costumer.Email = string.Empty;
 
 			createOrUpdateCostumer.Do(costumer);
@@ -84,7 +87,7 @@ namespace Domain.Tests
 		[Test]
 		public void Not_Save_Costumer_When_Her_Email_Is_White_Space()
 		{
-			Costumer costumer = CreateCostumer();
+			Customer costumer = CreateCostumer();
 			costumer.Email = " ";
 
 			createOrUpdateCostumer.Do(costumer);
@@ -95,7 +98,7 @@ namespace Domain.Tests
 		[Test]
 		public void Not_Save_Costumer_If_There_Is_Another_Costumer_With_The_Same_Email()
 		{
-			Costumer costumer = CreateCostumer();
+			Customer costumer = CreateCostumer();
 			costumerRepository.Setup(c => c.GetByEmail(costumer.Email)).Returns(CreateCostumer);
 
 			createOrUpdateCostumer.Do(costumer);
@@ -106,7 +109,7 @@ namespace Domain.Tests
 		[Test]
 		public void Save_Costumer_If_She_Already_Exists()
 		{
-			Costumer costumer = CreateCostumer();
+			Customer costumer = CreateCostumer();
 			costumerRepository.Setup(c => c.GetByEmail(costumer.Email)).Returns(() => costumer);
 
 			createOrUpdateCostumer.Do(costumer);
@@ -114,9 +117,9 @@ namespace Domain.Tests
 			costumerRepository.Verify(c => c.Save(costumer), Times.Once);
 		}
 
-		private Costumer CreateCostumer()
+		private Customer CreateCostumer()
 		{
-			Costumer costumer = new Costumer();
+			Customer costumer = new Customer();
 
 			costumer.Name = "Maria";
 			costumer.Email = "maria@email.com";

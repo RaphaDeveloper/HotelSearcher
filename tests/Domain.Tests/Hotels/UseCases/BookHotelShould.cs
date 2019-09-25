@@ -1,4 +1,7 @@
-﻿using Domain.Hotels.Entities;
+﻿using Domain.Customers.Entities;
+using Domain.Customers.Repositories;
+using Domain.Customers.ValueObjects;
+using Domain.Hotels.Entities;
 using Domain.Hotels.Repositories;
 using Domain.Hotels.Services;
 using Domain.Hotels.ValueObjects;
@@ -13,7 +16,7 @@ namespace Domain.Tests.Hotels.UseCases
 	public class BookHotelShould
 	{
 		private Mock<IHotelRepository> hotelRepository;
-		private Mock<ICostumerRepository> costumerRepository;
+		private Mock<ICustomerRepository> costumerRepository;
 
 		private HotelService hotelService;
 
@@ -21,7 +24,7 @@ namespace Domain.Tests.Hotels.UseCases
 		public void Setup()
 		{
 			hotelRepository = new Mock<IHotelRepository>();
-			costumerRepository = new Mock<ICostumerRepository>();
+			costumerRepository = new Mock<ICustomerRepository>();
 
 			hotelService = new HotelService(hotelRepository.Object, costumerRepository.Object);
 		}
@@ -32,7 +35,7 @@ namespace Domain.Tests.Hotels.UseCases
 			BookingSpecification bookingSpecification = new BookingSpecification(Guid.NewGuid(), Guid.NewGuid(), new DateTime[] { new DateTime(2019, 09, 22) });
 
 			Hotel hotel = CreateHotel(bookingSpecification.HotelId);
-			Costumer costumer = new Costumer { Id = bookingSpecification.CostumerId };
+			Customer costumer = new Customer { Id = bookingSpecification.CostumerId };
 
 			hotelRepository.Setup(h => h.GetById(bookingSpecification.HotelId)).Returns(hotel);
 			costumerRepository.Setup(h => h.GetById(bookingSpecification.CostumerId)).Returns(costumer);
@@ -42,7 +45,7 @@ namespace Domain.Tests.Hotels.UseCases
 
 
 			Assert.AreEqual(1, hotel.Bookings.Count);
-			Assert.AreEqual(costumer, hotel.Bookings.Single().Costumer);
+			Assert.AreEqual(costumer, hotel.Bookings.Single().Customer);
 			Assert.AreEqual(hotel, hotel.Bookings.Single().Hotel);
 			Assert.AreEqual(bookingSpecification.Dates, hotel.Bookings.Single().Dates);
 		}
@@ -53,7 +56,7 @@ namespace Domain.Tests.Hotels.UseCases
 			BookingSpecification bookingSpecification = new BookingSpecification(Guid.NewGuid(), Guid.NewGuid(), new DateTime[] { new DateTime(2019, 09, 22) });
 
 			Hotel hotel = CreateHotel(bookingSpecification.HotelId);
-			Costumer costumer = new Costumer { Id = bookingSpecification.CostumerId };
+			Customer costumer = new Customer { Id = bookingSpecification.CostumerId };
 
 			hotelRepository.Setup(h => h.GetById(bookingSpecification.HotelId)).Returns(hotel);
 			costumerRepository.Setup(h => h.GetById(bookingSpecification.CostumerId)).Returns(costumer);
@@ -64,7 +67,7 @@ namespace Domain.Tests.Hotels.UseCases
 
 			Assert.AreEqual(1, costumer.Bookings.Count);
 			Assert.AreEqual(hotel, costumer.Bookings.Single().Hotel);
-			Assert.AreEqual(costumer, costumer.Bookings.Single().Costumer);
+			Assert.AreEqual(costumer, costumer.Bookings.Single().Customer);
 			Assert.AreEqual(bookingSpecification.Dates, costumer.Bookings.Single().Dates);
 		}
 
@@ -76,7 +79,7 @@ namespace Domain.Tests.Hotels.UseCases
 			BookingSpecification bookingSpecification = new BookingSpecification(Guid.NewGuid(), Guid.NewGuid(), dates);
 
 			Hotel hotel = CreateHotel(bookingSpecification.HotelId);
-			Costumer costumer = new Costumer { Id = bookingSpecification.CostumerId };
+			Customer costumer = new Customer { Id = bookingSpecification.CostumerId };
 
 			hotelRepository.Setup(h => h.GetById(bookingSpecification.HotelId)).Returns(hotel);
 			costumerRepository.Setup(h => h.GetById(bookingSpecification.CostumerId)).Returns(costumer);
@@ -94,7 +97,7 @@ namespace Domain.Tests.Hotels.UseCases
 			IEnumerable<DateTime> dates = new DateTime[] { new DateTime(2019, 09, 22) };
 			BookingSpecification bookingSpecification = new BookingSpecification(Guid.NewGuid(), Guid.NewGuid(), dates);
 
-			Costumer costumer = new Costumer { Id = bookingSpecification.CostumerId };
+			Customer costumer = new Customer { Id = bookingSpecification.CostumerId };
 			Hotel hotel = CreateHotel(bookingSpecification.HotelId);
 			Booking booking = new Booking(hotel, costumer, dates, 50);
 			hotel.Bookings = new List<Booking> { booking };

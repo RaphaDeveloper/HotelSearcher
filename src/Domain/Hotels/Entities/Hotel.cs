@@ -1,4 +1,6 @@
-﻿using Domain.Hotels.ValueObjects;
+﻿using Domain.Customers.Entities;
+using Domain.Customers.ValueObjects;
+using Domain.Hotels.ValueObjects;
 using System;
 using System.Collections.Generic;
 
@@ -13,7 +15,7 @@ namespace Domain.Hotels.Entities
 		public List<Booking> Bookings { get; set; } = new List<Booking>();
 
 
-		internal void Book(Costumer costumer, IEnumerable<DateTime> dates)
+		internal void Book(Customer costumer, IEnumerable<DateTime> dates)
 		{
 			if (!costumer.IsThereAnyBookingForTheDates(dates))
 			{

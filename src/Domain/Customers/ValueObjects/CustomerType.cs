@@ -1,4 +1,4 @@
-﻿namespace Domain
+﻿namespace Domain.Customers.ValueObjects
 {
 	public enum CostumerType
 	{

@@ -1,5 +1,6 @@
 ﻿using Application.Services;
 using Domain;
+using Domain.Customers.ValueObjects;
 using Domain.Hotels.Services;
 using Domain.Hotels.ValueObjects;
 using Moq;

@@ -1,20 +1,21 @@
-﻿using System;
+﻿using Domain.Customers.Entities;
+using System;
 using System.Collections.Generic;
 
 namespace Domain.Hotels.Entities
 {
 	public class Booking
 	{
-		public Booking(Hotel hotel, Costumer costumer, IEnumerable<DateTime> dates, decimal totalPrice)
+		public Booking(Hotel hotel, Customer customer, IEnumerable<DateTime> dates, decimal totalPrice)
 		{
 			Hotel = hotel;
-			Costumer = costumer;
+			Customer = customer;
 			Dates = dates;
 			TotalPrice = totalPrice;
 		}
 
 		public Hotel Hotel { get; }
-		public Costumer Costumer { get; }
+		public Customer Customer { get; }
 		public IEnumerable<DateTime> Dates { get; }
 		public decimal TotalPrice { get; set; }
 	}

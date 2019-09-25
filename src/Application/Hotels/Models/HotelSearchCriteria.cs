@@ -1,4 +1,5 @@
 ﻿using Domain;
+using Domain.Customers.ValueObjects;
 using Domain.Hotels.ValueObjects;
 using System;
 using System.Collections.Generic;

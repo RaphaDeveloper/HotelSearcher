@@ -1,5 +1,6 @@
 ﻿using Application.Models;
 using Domain;
+using Domain.Customers.ValueObjects;
 using Domain.Hotels.ValueObjects;
 using NUnit.Framework;
 using System;

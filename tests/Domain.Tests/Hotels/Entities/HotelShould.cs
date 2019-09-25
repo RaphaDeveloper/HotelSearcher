@@ -1,4 +1,5 @@
-﻿using Domain.Hotels.Entities;
+﻿using Domain.Customers.ValueObjects;
+using Domain.Hotels.Entities;
 using Domain.Hotels.ValueObjects;
 using Domain.Tests.Stubs;
 using NUnit.Framework;

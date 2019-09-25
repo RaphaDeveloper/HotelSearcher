@@ -1,4 +1,6 @@
-﻿using Domain.Hotels.Entities;
+﻿using Domain.Customers.Entities;
+using Domain.Customers.Repositories;
+using Domain.Hotels.Entities;
 using Domain.Hotels.Repositories;
 using Domain.Hotels.ValueObjects;
 
@@ -6,14 +8,14 @@ namespace Domain.Hotels.Services
 {
 	public class HotelService : IHotelService
 	{
-		public HotelService(IHotelRepository hotelRepository, ICostumerRepository costumerRepository)
+		public HotelService(IHotelRepository hotelRepository, ICustomerRepository costumerRepository)
 		{
 			HotelRepository = hotelRepository;
 			CostumerRepository = costumerRepository;
 		}
 
 		private IHotelRepository HotelRepository { get; }
-		private ICostumerRepository CostumerRepository { get; }
+		private ICustomerRepository CostumerRepository { get; }
 
 		public string FindTheCheapestHotel(IHotelSearchCriteria hotelSearchCriteria)
 		{
@@ -33,7 +35,7 @@ namespace Domain.Hotels.Services
 		public void BookHotel(BookingSpecification bookingSpecification)
 		{
 			Hotel hotel = HotelRepository.GetById(bookingSpecification.HotelId);
-			Costumer costumer = CostumerRepository.GetById(bookingSpecification.CostumerId);
+			Customer costumer = CostumerRepository.GetById(bookingSpecification.CostumerId);
 
 			hotel.Book(costumer, bookingSpecification.Dates);
 		}

@@ -1,3 +1,4 @@
+using Domain.Customers.ValueObjects;
 using Domain.Hotels.Repositories;
 using Domain.Hotels.Services;
 using Domain.Tests.Stubs;
