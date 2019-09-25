@@ -1,4 +1,5 @@
 ﻿using Domain;
+using Domain.Hotels.Entities;
 using NHibernate.Mapping.ByCode;
 using NHibernate.Mapping.ByCode.Conformist;
 

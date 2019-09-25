@@ -1,4 +1,5 @@
 ﻿using Domain;
+using Domain.Hotels.Entities;
 using NHibernate;
 using System.Linq;
 

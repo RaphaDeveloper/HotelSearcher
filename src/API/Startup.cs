@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Application;
+﻿using Application.Services;
 using Domain;
+using Domain.Hotels.Repositories;
+using Domain.Hotels.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 
 namespace API
 {
@@ -27,7 +23,7 @@ namespace API
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddScoped<IHotelAppService, HotelAppService>();
-			services.AddScoped<IFindTheCheapestHotel, FindTheCheapestHotel>();
+			services.AddScoped<IHotelService, HotelService>();
 			services.AddScoped<IHotelRepository, HotelRepository>();
 
 			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
